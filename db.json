@@ -1,0 +1,49 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Learn JSON",
+      "description": "This is to learn JSON",
+      "completed": false,
+      "date": "2020-08-30"
+    },
+    {
+      "title": "Learn Java",
+      "description": "Programming",
+      "date": "2020-08-31T12:46:53.188Z",
+      "completed": false,
+      "id": 3
+    },
+    {
+      "title": "Learn React",
+      "description": "User Interface",
+      "date": "2020-08-31T13:59:52.672Z",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "title": "Learn Spring",
+      "description": "Frame work",
+      "date": "2020-09-01T05:33:44.629Z",
+      "completed": false,
+      "id": 5
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

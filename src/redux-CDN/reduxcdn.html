@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redux-CDN JS</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"
+      integrity="sha512-P36ourTueX/PrXrD4Auc1kVLoTE7bkWrIrkaM0IG2X3Fd90LFgTRogpZzNBssay0XOXhrIgudf4wFeftdsPDiQ=="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+      <h1>Redux Counter</h1>
+      <hr/>
+    <h1 id="counter"></h1>
+    <button id="incr">+</button>
+    <button id="decr">+</button>
+  </body>
+  <script>
+    var countr=document.getElementById("counter")  
+    var incrBtn=document.getElementById("incr")
+    var decrBtn=document.getElementById("decr")
+    incrAction = { type: "INCR" };
+    decrAction = { type: "DECR" };
+    function counterReducer(state, action) {
+      if (typeof state === 'undefined') {
+        return 0;
+      }
+      else if (action.type === "INCR") {
+        return state + 1;
+      }
+      else if (action.type === "DECR") {
+        return state - 1;
+      }
+      else{
+          return state
+      }
+    }
+    var store=Redux.createStore(counterReducer)
+    function render(){
+        countr.innerHTML=store.getState()
+    }
+    render()
+    store.subscribe(render)
+incrBtn.onclick=function(){
+    store.dispatch(incrAction)
+} 
+decrBtn.onclick=function(){
+    store.dispatch(decrAction)
+}    
+
+  </script>
+</html>
