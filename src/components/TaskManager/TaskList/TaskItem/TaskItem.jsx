@@ -1,7 +1,9 @@
 import React from 'react'
-import { ListGroupItem, Button } from 'reactstrap';
+import { ListGroupItem, Button} from 'reactstrap';
 import { connect } from 'react-redux';
 import { deleteTaskAction } from '../../../../actions/taskActions';
+import { Link } from 'react-router-dom';
+
 
 const TaskItem=props=>{
     const {task}=props;
@@ -10,7 +12,7 @@ const TaskItem=props=>{
     }
     return(
         <ListGroupItem>
-            {task.title}
+          <Link to={"/tasks/"+task.id}> {task.title} </Link>
             <Button close onClick={handleDelete}/>
         </ListGroupItem>
         )
