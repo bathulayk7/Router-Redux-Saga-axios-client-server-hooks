@@ -3,11 +3,25 @@ import { ListGroup, Alert } from "reactstrap";
 import TaskItem from "./TaskItem/TaskItem";
 import { connect } from "react-redux";
 import { loadTasksAction } from "../../../actions/taskActions";
+import { useEffect } from "react";
 
-class TaskList extends React.Component {
-  // useEffect(()=>{
-  //     props.loadTasks()
-  // },[])
+const TaskList=(props)=> {
+  const { tasks } = props;
+  useEffect(()=>{
+    props.loadTasks();
+  },[])
+    if (tasks.length === 0) {
+      return <Alert>No tasks to show.</Alert>;
+    }
+    return (
+      <ListGroup>
+        {tasks.map((task) => (
+          <TaskItem key={task.id} task={task} />
+        ))}
+      </ListGroup>
+    );
+}
+/* class TaskList extends React.Component {
   componentDidMount() {
     this.props.loadTasks();
   }
@@ -24,7 +38,7 @@ class TaskList extends React.Component {
       </ListGroup>
     );
   }
-}
+} */
 const mapStateToProps = (state) => {  //store.getState
   return {
     tasks: state.tasks,

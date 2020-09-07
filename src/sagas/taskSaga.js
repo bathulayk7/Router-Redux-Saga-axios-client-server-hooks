@@ -2,6 +2,7 @@ import {takeEvery,call, put,all} from "redux-saga/effects"
 import * as types from "../config/actionTypes"
 import * as service from "../services/TaskService"
 import * as actions from "../actions/taskActions"
+import * as alert from "../actions/alertActions"
 
 //worker Sagas
 function* loadTasks(){
@@ -13,14 +14,28 @@ function* addTask({data}){
     try{
     const task=yield call(service.addTask,data)
     yield put(actions.taskaddedAction(task))
-    }catch(e){console.log(e)}
+    yield put(alert.setAlertAction({
+        text:"Task Added!",
+        color:"success"
+    }))
+    }catch(e){yield put(alert.setAlertAction({
+        text:"Task not Added!",
+        color:"danger"
+    }))}
 }
 function* deleteTask({id}){
     try{
     yield call(service.deleteTask,id)
     yield put(actions.taskDeletedAction(id))
     // yield put(actions.loadTasksAction())
-    }catch(e){console.log(e)}
+    yield put(alert.setAlertAction({
+        text:"Task deleted!",
+        color:"success"
+    }))
+    }catch(e){yield put(alert.setAlertAction({
+        text:"Task not deleted!",
+        color:"danger"
+    }))}
 }
 //Watcher Sagas
 function* watchLoadTasks(){

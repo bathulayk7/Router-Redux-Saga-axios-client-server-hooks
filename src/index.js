@@ -5,13 +5,15 @@ import './index.css';
 import App from './App';
 import store from "./store"
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route, BrowserRouter } from 'react-router-dom';
+import history from './history';
 
+// console.log(store.getState())
 ReactDOM.render(
 <Provider store={store}>
-   <BrowserRouter>
+   <Router history={history}> {/* <BrowserRouter> */}
    <Route component={App} />
-   </BrowserRouter>
+   </Router>
 </Provider>,
 document.getElementById('root')
 );

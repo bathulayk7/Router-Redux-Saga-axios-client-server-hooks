@@ -7,7 +7,9 @@ import { Route, Switch, Redirect } from "react-router";
 import Register from "./components/Register/Register";
 import PageNotFound from "./components/shared/PageNotFound/PageNotFound";
 import TaskDetail from "./components/TaskManager/TaskDetail/TaskDetail";
-
+import UserRoute from "./routes/UserRoute";
+// run json server command to start project
+// command: npx json-server --port 3001 db.json
 function App() {
   return (
     <div className="container">
@@ -22,8 +24,8 @@ function App() {
             <Route path="/" exact render={()=><Redirect to="/login"/>} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/tasks" exact component={TaskManager} />
-            <Route path="/tasks/:id" component={TaskDetail} />
+            <UserRoute path="/tasks" exact component={TaskManager} />
+            <UserRoute path="/tasks/:id" component={TaskDetail} />
             <Route path="/**" component={PageNotFound} />
           </Switch>
         </div>

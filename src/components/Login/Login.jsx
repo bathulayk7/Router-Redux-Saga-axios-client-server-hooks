@@ -1,6 +1,8 @@
 import React from "react";
 import { Row, Col, Button, Form } from "reactstrap";
 import FormControl from "./FormControl";
+import { connect } from "react-redux";
+import { loginUserAction } from "../../actions/userActions";
 
 class Login extends React.Component {
   state = {
@@ -19,14 +21,17 @@ class Login extends React.Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
+    const { data } = this.state;
     const errors = this.validate();
+
     if (Object.keys(errors).length === 0) {
-      console.log(this.state.data);
-      this.setState({
+    this.props.login(data)    
+
+     this.setState({
         data: {
           username: "",
           password: "",
-        },
+          },
         errors: {},
       });
     } else {
@@ -74,4 +79,13 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+
+const mapDispatchToProps=(dispatch)=>{
+  return {
+    login:(creds)=>{
+      dispatch(loginUserAction(creds))
+    }
+  }
+}
+
+export default connect(null,mapDispatchToProps)(Login)
