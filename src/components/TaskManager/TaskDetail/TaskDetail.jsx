@@ -25,7 +25,12 @@ const TaskDetail = ({ match }) => {
         <p>{task.description}</p>
         <p>{task.completed}</p>
         <p>{task.date}</p>
-        <Link to="/tasks">Back to Task Manager </Link>
+        <p>
+         <Link to="/tasks">Back to Task Manager </Link>
+        </p>
+        <p>
+  <strong>Status:</strong><span>{task.completed?"Complete":"Pending"}</span>
+        </p>
       </CardBody>
     </Card>
   );
